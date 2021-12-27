@@ -81,11 +81,13 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
   return response.status(201).json(user.todos);
 });
 
-app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
+app.put('/todos', checksExistsUserAccount, (request, response) => {
   // Complete aqui
   const { user } = request;
   const { title, deadline } = request.body;
-  const { id } = request.params;
+  const { id } = request.headers;
+
+  console.log(id)
 
   const todo = user.todos.find((todo) => todo.id === id);
 
